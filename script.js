@@ -94,7 +94,7 @@
 
   // Add fade-in class to key sections
   const sections = document.querySelectorAll(
-    '.countdown-section, .invitation-section, .couple-section, .gallery-section, .event-section, .glimpses-section, .quote-section'
+    '.countdown-section, .invitation-section, .couple-section, .event-section, .glimpses-section, .quote-section'
   );
   sections.forEach(sec => {
     sec.style.opacity = '0';
@@ -109,7 +109,6 @@
     .countdown-section.visible,
     .invitation-section.visible,
     .couple-section.visible,
-    .gallery-section.visible,
     .event-section.visible,
     .glimpses-section.visible,
     .quote-section.visible {
