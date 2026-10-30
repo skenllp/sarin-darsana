@@ -790,7 +790,7 @@ body {
 }
 
 /* ═══════════════════════════════════
-   GALLERY SECTION
+   GALLERY SECTION – CLEAN GRID
 ═══════════════════════════════════ */
 .gallery-section {
   background: var(--cream);
@@ -799,32 +799,43 @@ body {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
 .gallery-item {
-  border-radius: 8px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(26, 58, 107, 0.1);
+  box-shadow: 0 8px 24px rgba(26, 58, 107, 0.1);
+  background: var(--white);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(26, 58, 107, 0.18);
 }
 
 .gallery-item img {
   width: 100%;
-  height: 400px;
+  height: auto;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
 }
 
 @media (max-width: 768px) {
   .gallery-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .gallery-item img {
-    height: 350px;
+    max-width: 440px;
+    gap: 24px;
   }
 }
 

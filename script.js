@@ -94,7 +94,7 @@
 
   // Add fade-in class to key sections
   const sections = document.querySelectorAll(
-    '.countdown-section, .invitation-section, .couple-section, .event-section, .glimpses-section, .quote-section'
+    '.countdown-section, .invitation-section, .couple-section, .gallery-section, .event-section, .glimpses-section, .quote-section'
   );
   sections.forEach(sec => {
     sec.style.opacity = '0';
@@ -109,6 +109,7 @@
     .countdown-section.visible,
     .invitation-section.visible,
     .couple-section.visible,
+    .gallery-section.visible,
     .event-section.visible,
     .glimpses-section.visible,
     .quote-section.visible {
@@ -142,6 +143,35 @@
     card.style.transform = 'translateY(24px) scale(0.97)';
     card.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
     obs.observe(card);
+  });
+})();
+
+// ─── GALLERY ITEMS STAGGER ANIMATION ─────────────────────────
+(function staggerGallery() {
+  const items = document.querySelectorAll('.gallery-item');
+  if (!items.length) return;
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Array.from(items).indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+          }, index * 140);
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  items.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(28px) scale(0.96)';
+    item.style.transition = 'opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1)';
+    obs.observe(item);
   });
 })();
 
